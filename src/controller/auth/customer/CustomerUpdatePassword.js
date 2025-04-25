@@ -15,7 +15,7 @@ const CustomerUpdatePassword = async (req, res, next) => {
     const accessToken = req.cookies.accessToken
     if (accessToken && (accessToken != '')) {
         const userInfo = VerifyAccessToken(accessToken)
-        console.log('USER INFO GOT FROM ACCESS TOKEN WHILE UPDATING PASSWORD', userInfo);
+        // console.log('USER INFO GOT FROM ACCESS TOKEN WHILE UPDATING PASSWORD', userInfo);
         const foundUser = await Customer.findOne({'email': userInfo.email})
         if (foundUser == null) {
             res.status(400).json(new ApiError(400, 'Authentication Failed'))
@@ -27,8 +27,8 @@ const CustomerUpdatePassword = async (req, res, next) => {
             const encryptedPassword = await EncryptPassword(newPassword)
             foundUser.password = encryptedPassword
             await foundUser.save()
-            console.log('USER AFTER UPDATING PASSWORD', foundUser);
-            console.log('UPDATED FROM ACCESS TOKEN WAY');
+            // console.log('USER AFTER UPDATING PASSWORD', foundUser);
+            // console.log('UPDATED FROM ACCESS TOKEN WAY');
             
         }
     }
@@ -55,8 +55,8 @@ const CustomerUpdatePassword = async (req, res, next) => {
                 foundUser.isOtpVerified = false
                 await foundUser.save()
                 
-                console.log('USER AFTER UPDATING PASSWORD', foundUser);
-                console.log('UPDATED FROM OTP WAY');
+                // console.log('USER AFTER UPDATING PASSWORD', foundUser);
+                // console.log('UPDATED FROM OTP WAY');
                 
                 res.clearCookie('otp').status(200).json(new ApiResponse(200, 'success'))
             }

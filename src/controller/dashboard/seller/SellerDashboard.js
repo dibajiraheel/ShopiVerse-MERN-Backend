@@ -18,7 +18,7 @@ const SellerDashboard = async (req, res, next) => {
     const totalOrders = allOrders.length
     
     const activeOrders = allOrders.filter((order) => order.isCompleted == false || order.isCompleted == 'false')
-    console.log('ACTIVE ORDERS', activeOrders);
+    // console.log('ACTIVE ORDERS', activeOrders);
     
     const totalActiveOrders = activeOrders.length
 
@@ -33,7 +33,7 @@ const SellerDashboard = async (req, res, next) => {
     if (allOrders.length > 0) {
         allOrders.map((order) => {
             const orderDate = FormatDate(order.createdAt)
-            console.log('ORDER DATE', orderDate);  
+            // console.log('ORDER DATE', orderDate);  
             for (let i = 0; i < days; i++) {
                 if (dates[i] == String(orderDate)) {
                     totalOrdersReceivedInLastXDays[i] = Number(totalOrdersReceivedInLastXDays[i]) + 1

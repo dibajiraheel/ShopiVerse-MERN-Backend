@@ -8,7 +8,7 @@ import Seller from "../../../models/Seller.model.js"
 
 const SellerSignup = async (req, res, next) => {
     const credentials = req.body
-    console.log('CREDENTIALS', credentials);
+    // console.log('CREDENTIALS', credentials);
     
     const foundUser = await Seller.findOne({'email': credentials.email})
     if (foundUser) {
@@ -29,9 +29,9 @@ const SellerSignup = async (req, res, next) => {
         }
     
         else {
-            console.log('Encrypting Passowrd');
+            // console.log('Encrypting Passowrd');
             const encryptedPassword = await EncryptPassword(credentials.password)
-            console.log('Encrypted Password', encryptedPassword);
+            // console.log('Encrypted Password', encryptedPassword);
             
             credentials.password = encryptedPassword
             credentials.SignupVia = 'email'
@@ -51,7 +51,7 @@ const SellerLogin = async (req, res, next) => {
     if (credentials.email && credentials.password) {
         const foundUser = await Seller.findOne({'email': credentials.email})
         // console.log('Found User', foundUser);
-        console.log('User Found In Seller', foundUser);
+        // console.log('User Found In Seller', foundUser);
         
         if (foundUser == null) {
             res.status(400).json(new ApiError(400, 'Email Not Registered'))
@@ -91,7 +91,7 @@ const SellerLogin = async (req, res, next) => {
 
 
 const SellerLogout = (req, res, next) => {
-    console.log('Logout Called');
+    // console.log('Logout Called');
     
     const cookies = req.cookies
     if (cookies.accessToken) {

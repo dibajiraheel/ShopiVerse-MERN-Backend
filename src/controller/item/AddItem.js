@@ -31,7 +31,7 @@ const AddItem = async (req, res, next) => {
     }
 
     await newItem.save()
-    console.log('ITEM ADDED IS', newItem);
+    // console.log('ITEM ADDED IS', newItem);
     
     res.status(200).json(new ApiResponse(200, 'Item Added Successfully', newItem))
     

@@ -13,10 +13,10 @@ const UpdateItemBio = async (req, res, next) => {
     }
 
     const data = req.body
-    console.log('DATA RECEIVED', req.body);
+    // console.log('DATA RECEIVED', req.body);
     
     const itemId = req.params.itemId
-    console.log('Item id received in update item function in backend', itemId);
+    // console.log('Item id received in update item function in backend', itemId);
 
     const foundItem = await Item.findOne({'_id': itemId})
     if (foundItem == null) {
@@ -29,7 +29,7 @@ const UpdateItemBio = async (req, res, next) => {
         return
     }
 
-    console.log('UPDATE DATA RECEIVED', data);
+    // console.log('UPDATE DATA RECEIVED', data);
     
     foundItem.name = data.name
     foundItem.price = data.price

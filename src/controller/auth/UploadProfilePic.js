@@ -11,17 +11,17 @@ import { ApiResponse } from "../../utils/ApiResponse.js";
 
 
 const UploadProfilePic = async (req, res, next) => {
-    console.log('Req after cloudinary', req.filesUrls);
-    console.log('Req after cloudinary', req.filesPublicIds)
+    // console.log('Req after cloudinary', req.filesUrls);
+    // console.log('Req after cloudinary', req.filesPublicIds)
 
     const userId = req.cookies._id
-    console.log('user id', userId);
+    // console.log('user id', userId);
     
     if (req.uploader == 'customer') {
-        console.log('CUSTOMER CALLED');
+        // console.log('CUSTOMER CALLED');
         
         const foundUser = await Customer.findOne({'_id': userId})
-        console.log('USER FOUND', foundUser);
+        // console.log('USER FOUND', foundUser);
         
         if (foundUser == null) {
             res.status(400).json(new ApiError(400, 'invalid User id'))
@@ -30,13 +30,13 @@ const UploadProfilePic = async (req, res, next) => {
 
         if (foundUser.profilePicUrl != '') {
             const deleteResponse = await DeleteFIleFromCloudinary(foundUser.profilePicPublicId)
-            console.log('Delete Response got', deleteResponse);
+            // console.log('Delete Response got', deleteResponse);
         }
         
         foundUser.profilePicUrl = req.filesUrls[0]
         foundUser.profilePicPublicId = req.filesPublicIds[0]
         await foundUser.save()
-        console.log('User After Adding New Profile Pic', foundUser);
+        // console.log('User After Adding New Profile Pic', foundUser);
         res.cookie('profilePicUrl', req.filesUrls[0]).status(200).json(new ApiResponse(200, 'success'))
         return
     }
@@ -51,13 +51,13 @@ const UploadProfilePic = async (req, res, next) => {
 
         if (foundUser.profilePicUrl != '') {
             const deleteResponse = await DeleteFIleFromCloudinary(foundUser.profilePicPublicId)
-            console.log('Delete Response got', deleteResponse);
+            // console.log('Delete Response got', deleteResponse);
         }
         
         foundUser.profilePicUrl = req.filesUrls[0]
         foundUser.profilePicPublicId = req.filesPublicIds[0]
         await foundUser.save()
-        console.log('User After Adding New Profile Pic', foundUser);
+        // console.log('User After Adding New Profile Pic', foundUser);
         res.cookie('profilePicUrl', req.filesUrls[0]).status(200).json(new ApiResponse(200, 'success'))
         return
         

@@ -8,7 +8,7 @@ import Seller from "../../../models/Seller.model.js"
 
 const CustomerSignup = async (req, res, next) => {
     const credentials = req.body
-    console.log('CREDENTIALS', credentials);
+    // console.log('CREDENTIALS', credentials);
     
     const foundUser = await Customer.findOne({'email': credentials.email})
     if (foundUser) {
@@ -29,9 +29,9 @@ const CustomerSignup = async (req, res, next) => {
         }
     
         else {
-            console.log('Encrypting Passowrd');
+            // console.log('Encrypting Passowrd');
             const encryptedPassword = await EncryptPassword(credentials.password)
-            console.log('Encrypted Password', encryptedPassword);
+            // console.log('Encrypted Password', encryptedPassword);
             
             credentials.password = encryptedPassword
             credentials.SignupVia = 'email'

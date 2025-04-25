@@ -11,7 +11,7 @@ const UpdateReview = async (req, res, next) => {
     const itemId = req.params.itemId
     const reviewId = req.params.reviewId
     const data = req.body
-    console.log('REVIEW DATA RECEIVED IN UPDATE REVIEW HANDLER', data);
+    // console.log('REVIEW DATA RECEIVED IN UPDATE REVIEW HANDLER', data);
     
     const foundReview = await Review.findOne({'itemId': itemId})
     if (foundReview == null) {
@@ -25,11 +25,11 @@ const UpdateReview = async (req, res, next) => {
     let isInteractionUpdated = false
     for (let i = 0; i < noOfInteractions; i++) {
         if (interactions[i]._id == reviewId) {
-            console.log('Interaction found', interactions[i]);
-            console.log('Interaction found at index', i);
+            // console.log('Interaction found', interactions[i]);
+            // console.log('Interaction found at index', i);
             interactions[i].review = data.review
             interactions[i].rating = data.rating
-            console.log('Interaction after update', interactions[i]);
+            // console.log('Interaction after update', interactions[i]);
             isInteractionUpdated = true
             break
         }        

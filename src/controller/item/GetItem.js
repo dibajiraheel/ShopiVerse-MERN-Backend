@@ -7,7 +7,7 @@ import { ApiResponse } from "../../utils/ApiResponse.js"
 
 const GetItem = async (req, res, next) => {
     const itemId = req.params.itemId
-    console.log('ITEM ID FOUND TO FIND ITEM', itemId);
+    // console.log('ITEM ID FOUND TO FIND ITEM', itemId);
     
     const foundItem = await Item.findOne({'_id': itemId})
     if (foundItem == null) {

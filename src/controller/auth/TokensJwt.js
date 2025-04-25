@@ -43,35 +43,35 @@ const GenerateTokens = (_id, email, role) => {
         accessToken,
         refreshToken
     }
-    console.log('id, email, role received to generate both tokens', _id, email, role);
-    console.log('tokens generated are', tokens);
+    // console.log('id, email, role received to generate both tokens', _id, email, role);
+    // console.log('tokens generated are', tokens);
     
     
     return tokens
 }
 
 const VerifyAccessToken = (token) => {
-    console.log('ACCESS TOKEN RECEVIED FOR VERIFICATION', token);
+    // console.log('ACCESS TOKEN RECEVIED FOR VERIFICATION', token);
     
     try {
         const userInfo = jwt.verify(token, config.accessTokenSecret)
         // console.log('USER INFO FOUND WHILE JWT VERIFICATION', userInfo);
         return userInfo
     } catch (error) {
-        console.log('JWT VERIFICATION ERROR', error);
+        // console.log('JWT VERIFICATION ERROR', error);
         return null
     }
 }
 
 const VerifyRefreshToken = (token) => {
-    console.log('REFRESH TOKEN RECEVIED FOR VERIFICATION', token);
+    // console.log('REFRESH TOKEN RECEVIED FOR VERIFICATION', token);
     
     try {
         const userInfo = jwt.verify(token, config.refreshTokenSecret)
         // console.log('USER INFO FOUND WHILE JWT VERIFICATION', userInfo);
         return userInfo
     } catch (error) {
-        console.log('JWT VERIFICATION ERROR', error);
+        // console.log('JWT VERIFICATION ERROR', error);
         return null
     }
 }

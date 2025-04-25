@@ -7,13 +7,13 @@ import { ApiError } from "../../utils/ApiError.js";
 const GoogleAuthRedirect = async (req, res) => {
 
     if (req.query.state == 'customer') {
-        console.log('CUSTOMER REDIRECT CALLED', req.user);
+        // console.log('CUSTOMER REDIRECT CALLED', req.user);
         const user = req.user
         
         const foundUser = await Customer.find({'email': user.email})
         const foundSeller = await Seller.findOne({'email': user.email}) 
-        console.log('FOUND USER IN CUSTOMER ', foundUser);
-        console.log('FOUND USER IN SELLER ', foundSeller);
+        // console.log('FOUND USER IN CUSTOMER ', foundUser);
+        // console.log('FOUND USER IN SELLER ', foundSeller);
         
     
         if (foundSeller) {
@@ -49,13 +49,13 @@ const GoogleAuthRedirect = async (req, res) => {
     }
 
     else if (req.query.state == 'seller') {
-        console.log('SELLER REDIRECT CALLED');
+        // console.log('SELLER REDIRECT CALLED');
         const user = req.user
         
         const foundUser = await Seller.find({'email': user.email})
         const foundCustomer = await Customer.findOne({'email': user.email})
-        console.log('FOUND USER IN CUSTOMER ', foundCustomer);
-        console.log('FOUND USER IN SELLER ', foundUser);
+        // console.log('FOUND USER IN CUSTOMER ', foundCustomer);
+        // console.log('FOUND USER IN SELLER ', foundUser);
         
         
         if (foundCustomer) {

@@ -20,7 +20,7 @@ const DeleteCart = async (req, res, next) => {
     }
 
     const response = await foundCart.deleteOne()
-    console.log('CART DELETE RESPONSE', response);
+    // console.log('CART DELETE RESPONSE', response);
 
     res.status(200).json(new ApiResponse(200, 'success'))
     return

@@ -26,27 +26,7 @@ app.use(cookieParser())
 app.use(express.urlencoded({extended: true}))
 
 
-const allowedOrigins = [
-    'http://localhost:5173',
-    'http://192.168.0.100:5173', // replace with your actual IP
-  ];
-  
-app.use(cors({
-origin: function (origin, callback) {
-    // console.log('ORIGIN RECEIVED...', origin);
-    // console.log('INCLUDED', allowedOrigins.includes(origin));
-    
-    if (!origin || allowedOrigins.includes(origin)) {
-    callback(null, true);
-    } else {
-    callback(new Error('Not allowed by CORS'));
-    }
-},
-credentials: true,
-}));
-
-
-// app.use(cors({origin: "http://localhost:5173", credentials: true}))
+app.use(cors({origin: process.env.FRONTEND_LINK, credentials: true}))
 
 app.use(passport.initialize())
 
@@ -65,7 +45,13 @@ app.use('/dashboard', DashboardRoute)
 
 
 app.listen(port, () => {
+
+
+
     console.log(`Server listening on port ${port}`);
+    console.log('All logs removed updated.....');
+    
+
     
 })
 

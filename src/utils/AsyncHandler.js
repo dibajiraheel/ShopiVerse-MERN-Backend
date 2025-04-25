@@ -7,7 +7,7 @@ const AsyncHandler = (fn) => {
             try {
                 await fn(req, res, next) 
             } catch (error) {
-                console.error('Some error occured', error);
+                // console.error('Some error occured', error);
                 res.status(500).json(new ApiError(500, 'Internal Server Error. Please Try Again'))
                 return
             }

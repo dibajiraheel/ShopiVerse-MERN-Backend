@@ -13,13 +13,13 @@ const AddReview = async (req, res, next) => {
     const customerId = req.params.customerId
     const itemId = req.params.itemId
     const data = req.body
-    console.log('REVIEW DATA RECEIVED IN ADD REVIEW HANDLER', data);
+    // console.log('REVIEW DATA RECEIVED IN ADD REVIEW HANDLER', data);
     
 
     const foundReview = await Review.findOne({'itemId': itemId})
     if (foundReview == null) {
         const newReview = new Review()
-        console.log('New Created Review', newReview);
+        // console.log('New Created Review', newReview);
 
         newReview.itemId = itemId
         
@@ -27,7 +27,7 @@ const AddReview = async (req, res, next) => {
         newReview.interaction.push(newInteraction)
 
         await newReview.save()
-        console.log('New Review Finalized', newReview);
+        // console.log('New Review Finalized', newReview);
         
         const updatedInteractions = newReview.interaction
         const totalUpdatedInteractions = updatedInteractions.length

@@ -6,7 +6,7 @@ import { ApiError } from '../../../utils/ApiError.js';
 
 
 const SellerForgetPassword = async (req, res, next) => {
-    console.log('REQUEST RECEIVED', req.body);
+    // console.log('REQUEST RECEIVED', req.body);
     
     const email = req.body.email
     const subject = "ShopiVerse OTP to update password"
@@ -24,10 +24,10 @@ const SellerForgetPassword = async (req, res, next) => {
         userFound.otp = otp
         await userFound.save()
     
-        console.log('USER AFTER OTP ADDED', userFound);
+        // console.log('USER AFTER OTP ADDED', userFound);
         
         const response = await SendMail(email, subject, content)
-        console.log('RESPONSE AFTER SENDING EMAIL', response);
+        // console.log('RESPONSE AFTER SENDING EMAIL', response);
     
         for (let cookie in req.cookies) {
             res.clearCookie(cookie, { path: '/' })

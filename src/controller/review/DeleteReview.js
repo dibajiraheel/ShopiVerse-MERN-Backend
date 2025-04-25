@@ -29,7 +29,7 @@ const DeleteReview = async (req, res, next) => {
 
     await foundReview.save()
 
-    console.log('Review After Deletion', foundReview);
+    // console.log('Review After Deletion', foundReview);
 
     res.status(200).json(new ApiResponse(200, "success"))
 

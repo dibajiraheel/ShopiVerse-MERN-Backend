@@ -44,7 +44,7 @@ const GetSellerOrderInSequence = async (req, res, next) => {
 
     res.status(200).json(new ApiResponse(200, 'success', {'sellerOrders': sellerOrders, 'deliveryInfo': deliveryInfo, 'totalOrders': totalOrders}))
     
-    console.log(await SellerOrder.find({'sellerId': sellerId}))
+    // console.log(await SellerOrder.find({'sellerId': sellerId}))
 
     return
 

@@ -22,10 +22,10 @@ const CustomerForgetPassword = async (req, res, next) => {
         userFound.otp = otp
         await userFound.save()
     
-        console.log('USER AFTER OTP ADDED', userFound);
+        // console.log('USER AFTER OTP ADDED', userFound);
         
         const response = await SendMail(email, subject, content)
-        console.log('RESPONSE AFTER SENDING EMAIL', response);
+        // console.log('RESPONSE AFTER SENDING EMAIL', response);
         
         for (let cookie in req.cookies) {
             res.clearCookie(cookie, { path: '/' })

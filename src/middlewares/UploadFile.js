@@ -43,7 +43,7 @@ const storage = multer.diskStorage({
 
 
   const UploadOncloudinary = async (req, res, next) => {
-    console.log('REQUEST FILES IN CLUDINARY', req.files);
+    // console.log('REQUEST FILES IN CLUDINARY', req.files);
     
     const fieldNames = Object.keys(req.files)
     const files = req.files  
@@ -55,10 +55,10 @@ const storage = multer.diskStorage({
         try {
             const uploadResponse = await cloudinary.v2.uploader.upload(files[fieldNames[i]][0]['path'], {folder: req.cloudinaryPath})
             uploadResponses.push(uploadResponse)
-            console.log('upload response', uploadResponse);
+            // console.log('upload response', uploadResponse);
             
         } catch (error) {
-            console.log(`Error occured while uploading ${i + 1} number file`);
+            // console.log(`Error occured while uploading ${i + 1} number file`);
             uploadErrorOccuredOnFIleNo = i + 1
             break
         }
@@ -76,7 +76,7 @@ const storage = multer.diskStorage({
     const publicIds = []
     for (let i = 0; i < totalFilesToUpload; i++) {
         urls.push(uploadResponses[i]['url'])
-        console.log('upload Response', uploadResponses[i]);
+        // console.log('upload Response', uploadResponses[i]);
         
         publicIds.push(uploadResponses[i]['public_id'])
     }
@@ -87,10 +87,12 @@ const storage = multer.diskStorage({
 
     for (let i = 0; i < totalFilesToUpload; i++) {
         const fileName = files[fieldNames[i]][0]['filename']
-        console.log('file name to delete', fileName);
+        // console.log('file name to delete', fileName);
         
         fs.unlink(('./src/public/' + fileName), (error) => {
-          if (error) console.log('Error while deleting file from public directory in project', error);
+          if (error) {
+            // console.log('Error while deleting file from public directory in project', error);
+          }
         })
     }
 
@@ -104,8 +106,8 @@ const storage = multer.diskStorage({
   const DeleteFIleFromCloudinary = async (publicId) => {
     if (publicId) {
       const deleteResponse = await cloudinary.uploader.destroy(publicId)
-      console.log('Delete Response', deleteResponse);
-      console.log('Delete Response Result', deleteResponse.result);
+      // console.log('Delete Response', deleteResponse);
+      // console.log('Delete Response Result', deleteResponse.result);
       return deleteResponse.result
     }
   }

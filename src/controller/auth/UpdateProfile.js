@@ -6,9 +6,9 @@ import { ApiResponse } from "../../utils/ApiResponse.js"
 
 const UpdateProfile = async (req, res, next) => {
     const userId = req.cookies._id
-    console.log('USER ID', userId);
-    console.log('ROLE', req.authUser);
-    console.log('DATA RECEIVED', req.body);
+    // console.log('USER ID', userId);
+    // console.log('ROLE', req.authUser);
+    // console.log('DATA RECEIVED', req.body);
     
     
     
@@ -25,7 +25,7 @@ const UpdateProfile = async (req, res, next) => {
         foundUser.province = req.body.province
         foundUser.city = req.body.city
         await foundUser.save()
-        console.log('Updated User', foundUser);
+        // console.log('Updated User', foundUser);
         res.status(200).json(new ApiResponse(200, 'success'))
         return
 
@@ -37,7 +37,7 @@ const UpdateProfile = async (req, res, next) => {
             res.status(400).json(new ApiError(400, 'Invalid User Id'))
             return
         }
-        console.log('DATA RECEIVED TO UPDATE PROFILE', req.body);
+        // console.log('DATA RECEIVED TO UPDATE PROFILE', req.body);
         
         foundUser.userName = req.body.userName
         foundUser.cnic = req.body.cnic
@@ -47,7 +47,7 @@ const UpdateProfile = async (req, res, next) => {
         foundUser.city = req.body.city
         
         await foundUser.save()
-        console.log('Updated User', foundUser);
+        // console.log('Updated User', foundUser);
         res.status(200).json(new ApiResponse(200, 'success'))
         return
 

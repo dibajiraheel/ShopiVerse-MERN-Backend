@@ -37,7 +37,7 @@ const DeleteItem = async (req, res, next) => {
 
 
     const response = await foundItem.deleteOne()
-    console.log('DELETE RESPONSE', response);
+    // console.log('DELETE RESPONSE', response);
     
     res.status(200).json(new ApiResponse(200, 'Item Deleted Successfully'))
     return

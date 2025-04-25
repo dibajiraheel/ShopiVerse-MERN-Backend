@@ -71,7 +71,7 @@ const AddItemInCart = async (req, res, next) => {
             foundCart.amount = updatedAmount
             await foundCart.save()
 
-            console.log('CART AFTER ADDING ITEM', foundCart);
+            // console.log('CART AFTER ADDING ITEM', foundCart);
 
             res.status(200).json(new ApiResponse(200, 'success'))
             return
