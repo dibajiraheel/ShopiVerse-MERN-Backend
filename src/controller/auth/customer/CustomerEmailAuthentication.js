@@ -46,11 +46,11 @@ const CustomerSignup = async (req, res, next) => {
 
 const CustomerLogin = async (req, res, next) => {
     const credentials = req.body
-    console.log('CREDENTIALS FOUND IN LOGIN', credentials);
+    // console.log('CREDENTIALS FOUND IN LOGIN', credentials);
     
     if (credentials.email && credentials.password) {
         const foundUser = await Customer.findOne({'email': credentials.email})
-        console.log('Found User', foundUser);
+        // console.log('Found User', foundUser);
         
         if (foundUser == null) {
             res.status(400).json(new ApiError(400, 'Email Not Registered'))
@@ -58,7 +58,7 @@ const CustomerLogin = async (req, res, next) => {
         }
         else {
             const isPasswordVerified = await VerifyPassword(credentials.password, foundUser.password)
-            console.log('Is Password Verified', isPasswordVerified);
+            // console.log('Is Password Verified', isPasswordVerified);
             
             if (!isPasswordVerified) {
                 res.status(400).json(new ApiResponse(400, 'Incorrect Password'))
@@ -67,9 +67,9 @@ const CustomerLogin = async (req, res, next) => {
             else {
                 if (foundUser.refreshToken) {
                     const accessToken = GenerateAccessToken(foundUser._id, foundUser.email, 'customer')
-                    console.log('ACCESS TOKEN GENERATED =', accessToken);
+                    // console.log('ACCESS TOKEN GENERATED =', accessToken);
                     
-                    res.cookie('userMode', 'customer').cookie('accessToken', accessToken).cookie('_id', ((foundUser._id).toHexString())).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '').status(200).json(new ApiResponse(200, 'Logged In Successfully'))    
+                    res.cookie('userMode', 'customer', {httpOnly: true, sameSite: 'None', secure: true}).cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))    
                     return
                 }
                 
@@ -77,7 +77,7 @@ const CustomerLogin = async (req, res, next) => {
                     const {accessToken, refreshToken} = GenerateTokens(foundUser._id, foundUser.email, 'customer')
                     foundUser.refreshToken = refreshToken
                     await foundUser.save()
-                    res.cookie('userMode', 'customer').cookie('accessToken', accessToken).cookie('_id', ((foundUser._id).toHexString())).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '').status(200).json(new ApiResponse(200, 'Logged In Successfully'))
+                    res.cookie('userMode', 'customer', {httpOnly: true, sameSite: 'None', secure: true}).cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))
                     return
                 }
             }
@@ -92,12 +92,12 @@ const CustomerLogin = async (req, res, next) => {
 
 
 const CustomerLogout = (req, res, next) => {
-    console.log('Logout Called');
+    // console.log('Logout Called');
     
     const cookies = req.cookies
     if (cookies.accessToken) {
         (Object.keys(cookies)).forEach((cookie) => {
-            res.clearCookie(cookie)
+            res.clearCookie(cookie, {httpOnly: true, sameSite: 'None', secure: true})
         })
         res.status(200).json(new ApiResponse(200, 'Logged out Successfully'))
         return

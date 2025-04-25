@@ -60,7 +60,7 @@ const SellerUpdatePassword = async (req, res, next) => {
                 // console.log('USER AFTER UPDATING PASSWORD', foundUser);
                 // console.log('UPDATED FROM OTP WAY');
                 
-                res.clearCookie('otp').status(200).json(new ApiResponse(200, 'success'))
+                res.clearCookie('otp', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'success'))
             }
 
         }

@@ -58,7 +58,7 @@ const UploadProfilePic = async (req, res, next) => {
         foundUser.profilePicPublicId = req.filesPublicIds[0]
         await foundUser.save()
         // console.log('User After Adding New Profile Pic', foundUser);
-        res.cookie('profilePicUrl', req.filesUrls[0]).status(200).json(new ApiResponse(200, 'success'))
+        res.cookie('profilePicUrl', req.filesUrls[0], {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'success'))
         return
         
     }
