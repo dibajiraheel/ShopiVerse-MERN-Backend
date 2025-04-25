@@ -7,6 +7,10 @@ import { ApiError } from "../utils/ApiError.js"
 
 const AuthenticateUser = async (req, res, next) => {
     const accessToken = req.cookies.accessToken
+    console.log('COOKIES RECEIVED', req.cookies);
+    console.log('COOKIES', req.cookies.accessToken, '---', req.cookies._id);
+    
+    
     // console.log('ACCESS TOKEN RECEIVED', accessToken);
     
 
