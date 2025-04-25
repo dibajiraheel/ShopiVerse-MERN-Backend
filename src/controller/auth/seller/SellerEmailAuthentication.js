@@ -68,7 +68,7 @@ const SellerLogin = async (req, res, next) => {
             else {
                 if (foundUser.refreshToken) {
                     const accessToken = GenerateAccessToken(foundUser._id, foundUser.email, 'seller')
-                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))    
+                    res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))    
                     return
                 }
                 
@@ -76,7 +76,7 @@ const SellerLogin = async (req, res, next) => {
                     const {accessToken, refreshToken} = GenerateTokens(foundUser._id, foundUser.email, 'seller')
                     foundUser.refreshToken = refreshToken
                     await foundUser.save()
-                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))
+                    res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))
                     return
                 }
             }
@@ -96,7 +96,7 @@ const SellerLogout = (req, res, next) => {
     const cookies = req.cookies
     if (cookies.accessToken) {
         (Object.keys(cookies)).forEach((cookie) => {
-            res.clearCookie(cookie, {httpOnly: true, sameSite: 'None', secure: true})
+            res.clearCookie(cookie, {httpOnly: false, sameSite: 'None', secure: true})
         })
         res.status(200).json(new ApiResponse(200, 'Logged out Successfully'))
         return

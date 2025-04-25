@@ -65,7 +65,7 @@ const AuthenticateUser = async (req, res, next) => {
             // console.log('SELLER REFRESH TOKEN VERIFIED');
             const accessToken = GenerateAccessToken(sellerUser._id, sellerUser.email, 'seller')
             req.role = 'seller'
-            res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
+            res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: false, sameSite: 'None', secure: true})
             next()
             return
         }
@@ -76,7 +76,7 @@ const AuthenticateUser = async (req, res, next) => {
         sellerUser.refreshToken = newRefreshToken
         await sellerUser.save()
         req.role = 'seller'
-        res.cookie('accessToken', newAccessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
+        res.cookie('accessToken', newAccessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: false, sameSite: 'None', secure: true})
         next()
         return
     }
@@ -91,7 +91,7 @@ const AuthenticateUser = async (req, res, next) => {
         // console.log('CUSTOMER REFRESH TOKEN VERIFIED');
         const accessToken = GenerateAccessToken(customerUser._id, customerUser.email, 'customer')
         req.role = 'customer'
-        res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
+        res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: false, sameSite: 'None', secure: true})
         next()
         return
     }
@@ -104,7 +104,7 @@ const AuthenticateUser = async (req, res, next) => {
     
     await customerUser.save()
     req.role = 'customer'
-    res.cookie('accessToken', newAccessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
+    res.cookie('accessToken', newAccessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: false, sameSite: 'None', secure: true})
     next()
     return
 }
