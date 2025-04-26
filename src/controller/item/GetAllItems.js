@@ -6,7 +6,7 @@ import { ApiResponse } from "../../utils/ApiResponse.js"
 
 
 const GetAllItems = async (req, res, next) => {
-    const sellerId = req.params.sellerId
+    const sellerId = req.cookies._id
     const foundItems = await Item.find({'sellerId': sellerId})
     if (foundItems.length == null) {
         res.status(400).json(new ApiError(400, 'No Item Belong To Given Seller Id'))

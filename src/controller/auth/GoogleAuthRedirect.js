@@ -31,7 +31,7 @@ const GoogleAuthRedirect = async (req, res) => {
             await newUser.save()
             // console.log('New User', newUser);
             
-            res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((newUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', newUser.profilePicUrl ? newUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).redirect(config.customerLoginRedirectUrl)
+            res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((newUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', newUser.profilePicUrl ? newUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).redirect(config.customerLoginRedirectUrl)
         }
     
         else {
@@ -42,7 +42,7 @@ const GoogleAuthRedirect = async (req, res) => {
             
             await existedUser.save()
     
-            res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((existedUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', existedUser.profilePicUrl ? existedUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).redirect(config.customerLoginRedirectUrl)
+            res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((existedUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', existedUser.profilePicUrl ? existedUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).redirect(config.customerLoginRedirectUrl)
         }
     
         return
@@ -73,7 +73,7 @@ const GoogleAuthRedirect = async (req, res) => {
             await newUser.save()
             // console.log('New User', newUser);
             
-            res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((newUser._id).toHexString())), {httpOnly: false, sameSite: 'None', secure: true}.cookie('profilePicUrl', newUser.profilePicUrl ? newUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).redirect(config.sellerLoginRedirectUrl)
+            res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((newUser._id).toHexString())), {httpOnly: true, sameSite: 'None', secure: true}.cookie('profilePicUrl', newUser.profilePicUrl ? newUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).redirect(config.sellerLoginRedirectUrl)
         }
 
         else {
@@ -84,7 +84,7 @@ const GoogleAuthRedirect = async (req, res) => {
             
             await existedUser.save()
 
-            res.cookie('accessToken', accessToken, {httpOnly: false, sameSite: 'None', secure: true}).cookie('_id', ((existedUser._id).toHexString()), {httpOnly: false, sameSite: 'None', secure: true}).cookie('profilePicUrl', existedUser.profilePicUrl ? existedUser.profilePicUrl : '', {httpOnly: false, sameSite: 'None', secure: true}).redirect(config.sellerLoginRedirectUrl)
+            res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((existedUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', existedUser.profilePicUrl ? existedUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).redirect(config.sellerLoginRedirectUrl)
         }
 
         return

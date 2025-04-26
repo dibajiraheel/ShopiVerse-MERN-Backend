@@ -13,7 +13,7 @@ const AddItemInCart = async (req, res, next) => {
         return
     }
 
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
     const itemid = req.params.itemId
     const itemQuantity = req.params.itemQuantity
     

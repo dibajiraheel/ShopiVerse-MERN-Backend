@@ -14,7 +14,7 @@ const UpdateSellerOrderStatus = async (req, res, next) => {
     }
 
     const sellerOrderId = req.params.sellerOrderId
-    const sellerId = req.params.sellerId
+    const sellerId = req.cookies._id
     const isCompleted = req.params.isCompleted
 
     const sellerOrder = await SellerOrder.findOne({'_id': sellerOrderId})

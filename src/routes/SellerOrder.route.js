@@ -12,16 +12,16 @@ import GetSellerOrderInSequence from "../controller/order/seller/GetSellerOrderS
 const SellerOrderRouter = new Router()
 
 
-.post('/update-seller-order-status/:sellerOrderId/:sellerId/:isCompleted', AsyncHandler(AuthenticateUser), AsyncHandler(UpdateSellerOrderStatus))
+.post('/update-seller-order-status/:sellerOrderId/:isCompleted', AsyncHandler(AuthenticateUser), AsyncHandler(UpdateSellerOrderStatus))
 
-.get('/get-seller-order/:sellerId', AsyncHandler(AuthenticateUser), AsyncHandler(GetSellerOrder))
+.get('/get-seller-order', AsyncHandler(AuthenticateUser), AsyncHandler(GetSellerOrder))
 
-.get('/get-delivery-details/:customerId', AsyncHandler(AuthenticateUser), AsyncHandler(GetDeliveryDetails))
+.get('/get-delivery-details', AsyncHandler(AuthenticateUser), AsyncHandler(GetDeliveryDetails))
 
 
 // Fetch Seller Order Based On Skip And Limit
 
-.get('/get-seller-order-limited/:sellerId/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetSellerOrderInSequence))
+.get('/get-seller-order-limited/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetSellerOrderInSequence))
 
 
 

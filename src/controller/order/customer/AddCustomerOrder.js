@@ -14,7 +14,7 @@ const AddCustomerOrder = async (req, res, next) => {
         return
     }
     
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
     const foundCart = await Cart.findOne({'customerId': customerId})
     if (foundCart == null) {
         res.status(400).json(new ApiError(400, 'No Item In Customer Cart to place order'))

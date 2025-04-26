@@ -10,8 +10,8 @@ const GetSellerOrder = async (req, res, next) => {
         return
     }
 
-    const sellerId = req.params.sellerId
-
+    const sellerId = req.cookies._id
+    
     const sellerOrders = await SellerOrder.find({'sellerId': sellerId})
 
     if (sellerOrders.length == 0) {

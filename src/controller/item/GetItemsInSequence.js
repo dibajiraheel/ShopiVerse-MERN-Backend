@@ -6,7 +6,7 @@ import { ApiResponse } from "../../utils/ApiResponse.js"
 
 
 const GetItemsInSequence = async (req, res, next) => {
-    const sellerId = req.params.sellerId
+    const sellerId = req.cookies._id
     const skip = req.params.skip
     const limit = req.params.limit
 

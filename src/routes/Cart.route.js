@@ -13,12 +13,12 @@ const CartRoute = Router()
 
 CartRoute
 
-.post('/add-item-in-cart/:itemId/:customerId/:itemQuantity', AsyncHandler(AuthenticateUser), AsyncHandler(AddItemInCart))
-.post('/remove-item-from-cart/:itemId/:customerId/:quantityToKeep', AsyncHandler(AuthenticateUser), AsyncHandler(RemoveItemFromCart))
-.delete('/delete-item-from-cart/:itemId/:customerId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteItemFromCart))
-.delete('/delete-cart/:customerId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteCart))
+.post('/add-item-in-cart/:itemId/:itemQuantity', AsyncHandler(AuthenticateUser), AsyncHandler(AddItemInCart))
+.post('/remove-item-from-cart/:itemId/:quantityToKeep', AsyncHandler(AuthenticateUser), AsyncHandler(RemoveItemFromCart))
+.delete('/delete-item-from-cart/:itemId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteItemFromCart))
+.delete('/delete-cart', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteCart))
 
-.get('/get-cart/:customerId', AsyncHandler(AuthenticateUser), AsyncHandler(GetCart))
+.get('/get-cart', AsyncHandler(AuthenticateUser), AsyncHandler(GetCart))
 
 
 

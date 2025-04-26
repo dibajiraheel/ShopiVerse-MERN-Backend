@@ -12,7 +12,7 @@ const GetCustomerOrder = async (req, res, next) => {
         return
     }
 
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
     const skip = req.params.skip
     const limit = req.params.limit
 

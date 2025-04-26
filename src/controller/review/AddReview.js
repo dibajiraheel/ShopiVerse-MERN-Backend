@@ -10,7 +10,7 @@ const AddReview = async (req, res, next) => {
         res.status(400).json(new ApiError(400, "Seller Cannot Review Item"))
         return
     }
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
     const itemId = req.params.itemId
     const data = req.body
     // console.log('REVIEW DATA RECEIVED IN ADD REVIEW HANDLER', data);

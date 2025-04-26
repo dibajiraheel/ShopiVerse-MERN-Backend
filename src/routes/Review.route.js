@@ -12,9 +12,9 @@ const ReviewRoute = Router()
 
 ReviewRoute
 
-.post('/add-review/:itemId/:customerId', upload.none(), AsyncHandler(AuthenticateUser), AsyncHandler(AddReview))
-.post('/update-review/:itemId/:customerId/:reviewId',upload.none() , AsyncHandler(AuthenticateUser), AsyncHandler(UpdateReview))
-.delete('/delete-review/:itemId/:customerId/:reviewId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteReview))
+.post('/add-review/:itemId', upload.none(), AsyncHandler(AuthenticateUser), AsyncHandler(AddReview))
+.post('/update-review/:itemId/:reviewId',upload.none() , AsyncHandler(AuthenticateUser), AsyncHandler(UpdateReview))
+.delete('/delete-review/:itemId/:reviewId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteReview))
 
 .get('/get-review/:itemId', AsyncHandler(AuthenticateUser), AsyncHandler(GetItemReview))
 

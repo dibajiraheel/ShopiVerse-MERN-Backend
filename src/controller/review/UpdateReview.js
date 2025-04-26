@@ -7,7 +7,7 @@ const UpdateReview = async (req, res, next) => {
         res.status(400).json(new ApiError(400, "Seller Cannot Review Item"))
         return
     }
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
     const itemId = req.params.itemId
     const reviewId = req.params.reviewId
     const data = req.body

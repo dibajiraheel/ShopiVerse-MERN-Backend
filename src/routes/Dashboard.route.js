@@ -11,7 +11,7 @@ const DashboardRoute = Router()
 
 DashboardRoute
 
-.get('/seller/:sellerId/:days', AsyncHandler(AuthenticateUser), AsyncHandler(SellerDashboard))
+.get('/seller/:days', AsyncHandler(AuthenticateUser), AsyncHandler(SellerDashboard))
 
 
 

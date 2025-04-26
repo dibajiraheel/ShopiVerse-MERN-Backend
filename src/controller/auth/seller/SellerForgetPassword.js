@@ -30,7 +30,7 @@ const SellerForgetPassword = async (req, res, next) => {
         // console.log('RESPONSE AFTER SENDING EMAIL', response);
     
         for (let cookie in req.cookies) {
-            res.clearCookie(cookie, {httpOnly: false, sameSite: 'None', secure: true, path: '/'})
+            res.clearCookie(cookie, {httpOnly: true, sameSite: 'None', secure: true, path: '/'})
         }
 
 

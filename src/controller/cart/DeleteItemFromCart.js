@@ -12,7 +12,7 @@ const DeleteItemFromCart = async (req, res, next) => {
     }
 
     const itemId = req.params.itemId
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
 
     const foundCart = await Cart.findOne({'customerId': customerId})
     if (foundCart == null) {

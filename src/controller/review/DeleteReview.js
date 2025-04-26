@@ -12,7 +12,7 @@ const DeleteReview = async (req, res, next) => {
 
     const itemId = req.params.itemId
     const reviewId = req.params.reviewId
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
 
     const foundReview = await Review.findOne({'itemId': itemId})
 

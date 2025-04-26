@@ -8,7 +8,7 @@ import { ApiResponse } from "../../../utils/ApiResponse.js"
 
 const GetDeliveryDetails = async (req, res, next) => {
 
-    const customerId = req.params.customerId
+    const customerId = req.cookies._id
 
     const customer = await Customer.findOne({'_id': customerId})
     if (customer == null) {

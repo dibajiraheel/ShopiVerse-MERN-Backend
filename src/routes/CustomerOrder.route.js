@@ -11,9 +11,9 @@ const CustomerOrderRoute = Router()
 
 CustomerOrderRoute
 
-.post('/add-customer-order/:customerId', AsyncHandler(AuthenticateUser), AsyncHandler(AddCustomerOrder))
+.post('/add-customer-order', AsyncHandler(AuthenticateUser), AsyncHandler(AddCustomerOrder))
 
-.get('/get-customer-order/:customerId/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetCustomerOrder))
+.get('/get-customer-order/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetCustomerOrder))
 
 
 export default CustomerOrderRoute

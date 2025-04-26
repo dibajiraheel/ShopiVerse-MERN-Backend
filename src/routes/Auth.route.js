@@ -40,7 +40,7 @@ AuthRoute
 .post('/customer/update-profile', upload.none(), AsyncHandler(AuthenticateUser), CustomerUserType, AsyncHandler(UpdateProfile))
 .post('/customer/upload-profile-pic', AsyncHandler(AuthenticateUser), CustomerCloudinaryPath, upload.fields([{name: 'profilePic'}]), AsyncHandler(UploadOncloudinary), AsyncHandler(UploadProfilePic))
 
-.get('/customer/profile/:customerId', AsyncHandler(AuthenticateUser), CustomerUserType, AsyncHandler(GetProfile))
+.get('/customer/profile', AsyncHandler(AuthenticateUser), CustomerUserType, AsyncHandler(GetProfile))
 
 
 

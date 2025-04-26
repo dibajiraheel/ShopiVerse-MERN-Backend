@@ -8,7 +8,7 @@ import { ApiResponse } from "../../utils/ApiResponse.js"
 const GetProfile = async (req, res, next) => {
 
     if (req.authUser == 'customer') {
-        const userId = req.params.customerId
+        const userId = req.cookies._id
         const foundUser = await Customer.findOne({'_id': userId})
         if (foundUser == null) {
             res.status(400).json(new ApiError(400, 'Invalid User Id'))

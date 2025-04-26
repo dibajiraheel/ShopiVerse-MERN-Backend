@@ -24,7 +24,7 @@ const UpdateItemBio = async (req, res, next) => {
         return
     }
 
-    if (foundItem.sellerId != req.params.sellerId) {
+    if (foundItem.sellerId != req.cookies._id) {
         res.status(400).json(new ApiError(400, "This Seller Is Not Owner Of This Item"))
         return
     }
@@ -62,7 +62,7 @@ const UpdateItemImages = async (req, res, next) => {
         return
     }
 
-    if (foundItem.sellerId != req.params.sellerId) {
+    if (foundItem.sellerId != req.cookies._id) {
         res.status(400).json(new ApiError(400, "This Seller Is Not Owner Of This Item"))
         return
     }

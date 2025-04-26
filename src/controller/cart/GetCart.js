@@ -12,7 +12,7 @@ const GetCart = async (req, res, next) => {
         return
     }
 
-    const customerid = req.params.customerId
+    const customerid = req.cookies._id
     // console.log('CUSTOMER ID TO FIND CART', customerid);
     // console.log('PARAMS FOUND', req.params);
     

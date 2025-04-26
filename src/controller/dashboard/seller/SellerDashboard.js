@@ -9,7 +9,7 @@ const SellerDashboard = async (req, res, next) => {
         return
     }
 
-    const sellerId = req.params.sellerId
+    const sellerId = req.cookies._id
     const days = req.params.days
 
     const fetchedForXDays = Number(days)

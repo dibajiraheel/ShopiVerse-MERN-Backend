@@ -11,7 +11,7 @@ const GetSellerOrderInSequence = async (req, res, next) => {
         return
     }
 
-    const sellerId = req.params.sellerId
+    const sellerId = req.cookies._id
     const skip = req.params.skip
     const limit = req.params.limit
 

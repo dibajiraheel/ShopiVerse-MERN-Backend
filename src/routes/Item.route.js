@@ -19,24 +19,24 @@ const ItemRoute = Router()
 ItemRoute
 .post('/add-item', AsyncHandler(AuthenticateUser), ItemCloudinaryPath, upload.fields([{name: 'imageOne'}, {name: 'imageTwo'}]), AsyncHandler(UploadOncloudinary),  AsyncHandler(AddItem))
 
-.post('/update-item-bio/:itemId/:sellerId', upload.none(), AsyncHandler(AuthenticateUser), AsyncHandler(UpdateItemBio))
+.post('/update-item-bio/:itemId', upload.none(), AsyncHandler(AuthenticateUser), AsyncHandler(UpdateItemBio))
 
-.post('/update-item-images/:itemId/:sellerId', AsyncHandler(AuthenticateUser), ItemCloudinaryPath, upload.fields([{name: 'imageOne'}, {name: 'imageTwo'}]), AsyncHandler(UploadOncloudinary), AsyncHandler(UpdateItemImages))
+.post('/update-item-images/:itemId', AsyncHandler(AuthenticateUser), ItemCloudinaryPath, upload.fields([{name: 'imageOne'}, {name: 'imageTwo'}]), AsyncHandler(UploadOncloudinary), AsyncHandler(UpdateItemImages))
 
 .post('/increase-item-stock/:itemId/:addMore', AsyncHandler(AuthenticateUser), AsyncHandler(IncreaseItemStock))
 
 .post('/decrease-item-stock/:itemId/:decreaseBy', AsyncHandler(AuthenticateUser), AsyncHandler(DecreaseItemStock))
 
-.delete('/delete-item/:itemId/:sellerId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteItem))
+.delete('/delete-item/:itemId', AsyncHandler(AuthenticateUser), AsyncHandler(DeleteItem))
 
 .get('/get-item/:itemId', AsyncHandler(AuthenticateUser), AsyncHandler(GetItem))
 
-.get('/get-all-items/:sellerId', AsyncHandler(AuthenticateUser), AsyncHandler(GetAllItems))
+.get('/get-all-items', AsyncHandler(AuthenticateUser), AsyncHandler(GetAllItems))
 
 
 // Pagination
 
-.get('/get-items/:sellerId/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetItemsInSequence))
+.get('/get-items/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetItemsInSequence))
 
 .get('/get-items-for-customer/:skip/:limit', AsyncHandler(AuthenticateUser), AsyncHandler(GetAllItemsInSequenceForCustomer))
 

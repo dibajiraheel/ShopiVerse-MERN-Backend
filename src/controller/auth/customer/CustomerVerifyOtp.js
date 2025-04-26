@@ -14,7 +14,7 @@ const CustomerVerifyOtp = async (req, res, next) => {
     else if (foundUser.otp == otp) {
         foundUser.isOtpVerified = true
         await foundUser.save()
-        res.cookie('otp', otp, {httpOnly: false, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'success'))
+        res.cookie('otp', otp, {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'success'))
         return
     }
 }
