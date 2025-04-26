@@ -69,6 +69,7 @@ const AuthenticateUser = async (req, res, next) => {
             // console.log('SELLER REFRESH TOKEN VERIFIED');
             const accessToken = GenerateAccessToken(sellerUser._id, sellerUser.email, 'seller')
             req.role = 'seller'
+            req.profilePicUrl = sellerUser.profilePicUrl
             res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
             next()
             return
@@ -80,6 +81,7 @@ const AuthenticateUser = async (req, res, next) => {
         sellerUser.refreshToken = newRefreshToken
         await sellerUser.save()
         req.role = 'seller'
+        req.profilePicUrl = sellerUser.profilePicUrl
         res.cookie('accessToken', newAccessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((sellerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', sellerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
         next()
         return
@@ -95,6 +97,7 @@ const AuthenticateUser = async (req, res, next) => {
         // console.log('CUSTOMER REFRESH TOKEN VERIFIED');
         const accessToken = GenerateAccessToken(customerUser._id, customerUser.email, 'customer')
         req.role = 'customer'
+        req.profilePicUrl = customerUser.profilePicUrl
         res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
         next()
         return
@@ -108,6 +111,7 @@ const AuthenticateUser = async (req, res, next) => {
     
     await customerUser.save()
     req.role = 'customer'
+    req.profilePicUrl = customerUser.profilePicUrl
     res.cookie('accessToken', newAccessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((customerUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', customerUser.profilePicUrl, {httpOnly: true, sameSite: 'None', secure: true})
     next()
     return

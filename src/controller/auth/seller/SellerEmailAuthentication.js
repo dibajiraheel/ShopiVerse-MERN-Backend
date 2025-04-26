@@ -68,7 +68,7 @@ const SellerLogin = async (req, res, next) => {
             else {
                 if (foundUser.refreshToken) {
                     const accessToken = GenerateAccessToken(foundUser._id, foundUser.email, 'seller')
-                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))    
+                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully', {profilePicUrl: foundUser.profilePicUrl}))    
                     return
                 }
                 
@@ -76,7 +76,7 @@ const SellerLogin = async (req, res, next) => {
                     const {accessToken, refreshToken} = GenerateTokens(foundUser._id, foundUser.email, 'seller')
                     foundUser.refreshToken = refreshToken
                     await foundUser.save()
-                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully'))
+                    res.cookie('accessToken', accessToken, {httpOnly: true, sameSite: 'None', secure: true}).cookie('_id', ((foundUser._id).toHexString()), {httpOnly: true, sameSite: 'None', secure: true}).cookie('profilePicUrl', foundUser.profilePicUrl ? foundUser.profilePicUrl : '', {httpOnly: true, sameSite: 'None', secure: true}).status(200).json(new ApiResponse(200, 'Logged In Successfully', {profilePicUrl: foundUser.profilePicUrl}))
                     return
                 }
             }
