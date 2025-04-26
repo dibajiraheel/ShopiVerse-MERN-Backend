@@ -102,7 +102,7 @@ const storage = multer.diskStorage({
         const fileName = files[fieldNames[i]][0]['filename']
         console.log('file name to delete', fileName);
         
-        fs.unlink(('/tmp' + fileName), (error) => {
+        fs.unlink(('/tmp/' + fileName), (error) => {
           if (error) {
             console.log('Error while deleting file from public directory in project', error);
           }
