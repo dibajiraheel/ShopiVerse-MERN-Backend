@@ -43,7 +43,7 @@ const storage = multer.diskStorage({
 
 
   const UploadOncloudinary = async (req, res, next) => {
-    // console.log('REQUEST FILES IN CLUDINARY', req.files);
+    console.log('REQUEST FILES IN CLUDINARY', req.files);
     
     const fieldNames = Object.keys(req.files)
     const files = req.files  
@@ -87,7 +87,7 @@ const storage = multer.diskStorage({
 
     for (let i = 0; i < totalFilesToUpload; i++) {
         const fileName = files[fieldNames[i]][0]['filename']
-        // console.log('file name to delete', fileName);
+        console.log('file name to delete', fileName);
         
         fs.unlink(('./src/public/' + fileName), (error) => {
           if (error) {
