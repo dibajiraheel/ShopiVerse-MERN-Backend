@@ -5,7 +5,7 @@ import config from "../../../config.js";
 passport.use(new GoogleStrategy({
     clientID: config.clientId,
     clientSecret: config.clientSecret,
-    callbackURL: "/auth/google/redirect"
+    callbackURL: "https://shopiverse-by-raheel.onrender.com/auth/google/redirect"
 }, async (accessToken, refreshToken, profile, done) => {
     // console.log('PROFILE RECEIVED', profile)
     const userInfo = {
