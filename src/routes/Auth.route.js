@@ -23,6 +23,8 @@ import AuthenticateUser from "../middlewares/AuthenticateUser.js";
 import GoogleAuthRedirect from "../controller/auth/GoogleAuthRedirect.js";
 
 
+import CheckAuthorization from "../controller/auth/CheckAuthorization.js"
+
 const AuthRoute = Router()
 
 AuthRoute
@@ -64,6 +66,10 @@ AuthRoute
 .post('/seller/upload-profile-pic', AsyncHandler(AuthenticateUser), SellerCloudinaryPath, upload.fields([{name: 'profilePic'}]), AsyncHandler(UploadOncloudinary), AsyncHandler(UploadProfilePic))
 
 .get('/seller/profile/', AsyncHandler(AuthenticateUser), SellerUserType, AsyncHandler(GetProfile))
+
+
+// Verify Authentication
+.get('/authorization', AsyncHandler(AuthenticateUser), CheckAuthorization)
 
 
 export default AuthRoute
