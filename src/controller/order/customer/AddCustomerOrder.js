@@ -29,12 +29,13 @@ const AddCustomerOrder = async (req, res, next) => {
     await customerOrder.save()
 
 
-    // Update Items Sold In Item Model
+    // Update Items Sold and Stock In Item Model
     const noOfItems = (customerOrder.items).length
     for (let i = 0; i < noOfItems; i++) {
         const item = (customerOrder.items)[i]
         const foundItem = await Item.findOne({'_id': item.itemId})
         foundItem.sold = Number(foundItem.sold) + Number(item.itemQuantity)
+        foundItem.stock = Number(foundItem.stock) - Number(item.itemQuantity)
         await foundItem.save()
     }
 

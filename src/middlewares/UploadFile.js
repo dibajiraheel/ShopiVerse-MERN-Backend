@@ -44,19 +44,6 @@ const storage = multer.diskStorage({
 
   const UploadOncloudinary = async (req, res, next) => {
     console.log('REQUEST FILES IN CLUDINARY', req.files);
-
-    const tempFolderPath = '/tmp'
-    fs.readdir(tempFolderPath, (err, files) => {
-      if (err) {
-        console.error('Error reading /tmp folder:', err);
-        return;
-      }
-    
-      console.log('Files in /tmp:');
-      files.forEach(file => {
-        console.log(file);
-      });
-    });
     
     const fieldNames = Object.keys(req.files)
     const files = req.files  
