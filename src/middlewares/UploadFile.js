@@ -7,7 +7,7 @@ import fs from 'fs'
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, './src/public')
+      cb(null, '/tmp')
     },
     filename: function (req, file, cb) {
       cb(null, String(Date.now()) + '.' + (file.originalname.split('.'))[1])
@@ -89,7 +89,7 @@ const storage = multer.diskStorage({
         const fileName = files[fieldNames[i]][0]['filename']
         console.log('file name to delete', fileName);
         
-        fs.unlink(('./src/public/' + fileName), (error) => {
+        fs.unlink(('/tmp' + fileName), (error) => {
           if (error) {
             // console.log('Error while deleting file from public directory in project', error);
           }
